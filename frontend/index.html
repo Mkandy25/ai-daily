@@ -19,7 +19,7 @@
       <nav class="main-nav" aria-label="Navigation principale">
         <a class="nav-link nav-link-active" href="#articles">Actualités</a>
       </nav>
-      <div class="search-box" role="search">
+      <form class="search-box" id="search-form" role="search">
         <span class="search-icon" aria-hidden="true">⌕</span>
         <label class="visually-hidden" for="news-search"
           >Rechercher une actualité</label
@@ -28,9 +28,8 @@
           id="news-search"
           type="search"
           placeholder="Rechercher une actualité"
-          disabled
         />
-      </div>
+      </form>
     </header>
 
     <main id="top" class="page-shell">
@@ -53,14 +52,14 @@
             <p class="section-kicker">Le fil</p>
             <h2 id="feed-title">Actualités récentes</h2>
           </div>
-          <span class="article-count">Exemples de présentation</span>
+          <span class="article-count" id="article-count" aria-live="polite">3 actualités</span>
         </div>
 
-        <div class="topic-list" aria-label="Thèmes">
-          <span class="topic topic-selected">Tout</span>
-          <span class="topic">Recherche</span>
-          <span class="topic">Outils</span>
-          <span class="topic">Entreprises</span>
+        <div class="topic-list" role="group" aria-label="Filtrer les actualités par thème">
+          <button class="topic topic-selected" type="button" data-topic="all" aria-pressed="true">Tout</button>
+          <button class="topic" type="button" data-topic="research" aria-pressed="false">Recherche</button>
+          <button class="topic" type="button" data-topic="tools" aria-pressed="false">Outils</button>
+          <button class="topic" type="button" data-topic="business" aria-pressed="false">Entreprises</button>
         </div>
 
         <p class="demo-notice">
@@ -69,7 +68,7 @@
         </p>
 
         <div class="article-list">
-          <article class="article-card">
+          <article class="article-card" data-topic="research">
             <div class="article-meta">
               <span class="article-topic">Recherche</span>
               <span class="meta-separator" aria-hidden="true">·</span>
@@ -96,7 +95,7 @@
             </div>
           </article>
 
-          <article class="article-card">
+          <article class="article-card" data-topic="tools">
             <div class="article-meta">
               <span class="article-topic topic-tools">Outils</span>
               <span class="meta-separator" aria-hidden="true">·</span>
@@ -122,7 +121,7 @@
             </div>
           </article>
 
-          <article class="article-card">
+          <article class="article-card" data-topic="business">
             <div class="article-meta">
               <span class="article-topic topic-business">Entreprises</span>
               <span class="meta-separator" aria-hidden="true">·</span>
@@ -146,6 +145,10 @@
             </div>
           </article>
         </div>
+
+        <p class="empty-state" id="empty-state" role="status" hidden>
+          Aucune actualité ne correspond à ta recherche.
+        </p>
       </section>
     </main>
 
@@ -153,5 +156,6 @@
       <span>AI Daily</span>
       <span>Les articles appartiennent à leurs sources originales.</span>
     </footer>
+    <script src="app.js" defer></script>
   </body>
 </html>
