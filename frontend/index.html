@@ -1,16 +1,157 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ai Daily</title>
+    <meta
+      name="description"
+      content="Un fil clair pour découvrir les actualités de l’intelligence artificielle."
+    />
+    <title>AI Daily — Actualités sur l’IA</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header></header>
-    <main>
-      <section>
-        <div></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="AI Daily, accueil">
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <span>AI Daily</span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a class="nav-link nav-link-active" href="#articles">Actualités</a>
+      </nav>
+      <div class="search-box" role="search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label class="visually-hidden" for="news-search"
+          >Rechercher une actualité</label
+        >
+        <input
+          id="news-search"
+          type="search"
+          placeholder="Rechercher une actualité"
+          disabled
+        />
+      </div>
+    </header>
+
+    <main id="top" class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">
+          <span class="status-dot"></span> Votre veille IA, en un fil
+        </p>
+        <h1 id="page-title">
+          L’actualité de l’IA,<br /><span>en clair.</span>
+        </h1>
+        <p class="intro-copy">
+          Les nouveautés et les idées à suivre dans le domaine de l’intelligence
+          artificielle.
+        </p>
+      </section>
+
+      <section class="feed-section" id="articles" aria-labelledby="feed-title">
+        <div class="feed-heading">
+          <div>
+            <p class="section-kicker">Le fil</p>
+            <h2 id="feed-title">Actualités récentes</h2>
+          </div>
+          <span class="article-count">Exemples de présentation</span>
+        </div>
+
+        <div class="topic-list" aria-label="Thèmes">
+          <span class="topic topic-selected">Tout</span>
+          <span class="topic">Recherche</span>
+          <span class="topic">Outils</span>
+          <span class="topic">Entreprises</span>
+        </div>
+
+        <p class="demo-notice">
+          Les articles ci-dessous sont des exemples. La collecte depuis des flux
+          RSS sera ajoutée dans une prochaine étape.
+        </p>
+
+        <div class="article-list">
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-topic">Recherche</span>
+              <span class="meta-separator" aria-hidden="true">·</span>
+              <span>Source de démonstration</span>
+              <span class="meta-separator" aria-hidden="true">·</span>
+              <time datetime="2026-11-17">17 nov. 2026</time>
+            </div>
+            <h3>
+              Exemple : une nouvelle recherche fait avancer l’intelligence
+              artificielle
+            </h3>
+            <p class="article-summary">
+              Un court résumé fourni par la source apparaîtra ici lorsqu’il sera
+              disponible.
+            </p>
+            <div class="article-actions">
+              <span class="text-link"
+                >Détails à venir <span aria-hidden="true">→</span></span
+              >
+              <span class="source-link"
+                >Lien vers la source à venir
+                <span aria-hidden="true">↗</span></span
+              >
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-topic topic-tools">Outils</span>
+              <span class="meta-separator" aria-hidden="true">·</span>
+              <span>Source de démonstration</span>
+              <span class="meta-separator" aria-hidden="true">·</span>
+              <time datetime="2026-11-16">16 nov. 2026</time>
+            </div>
+            <h3>
+              Exemple : un nouvel outil d’IA simplifie une tâche quotidienne
+            </h3>
+            <p class="article-summary">
+              Chaque carte donnera les informations utiles pour décider si
+              l’article mérite d’être lu.
+            </p>
+            <div class="article-actions">
+              <span class="text-link"
+                >Détails à venir <span aria-hidden="true">→</span></span
+              >
+              <span class="source-link"
+                >Lien vers la source à venir
+                <span aria-hidden="true">↗</span></span
+              >
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-topic topic-business">Entreprises</span>
+              <span class="meta-separator" aria-hidden="true">·</span>
+              <span>Source de démonstration</span>
+              <span class="meta-separator" aria-hidden="true">·</span>
+              <time datetime="2026-11-15">15 nov. 2026</time>
+            </div>
+            <h3>Exemple : une entreprise annonce un projet lié à l’IA</h3>
+            <p class="article-summary">
+              La source originale restera toujours accessible depuis la page de
+              l’actualité.
+            </p>
+            <div class="article-actions">
+              <span class="text-link"
+                >Détails à venir <span aria-hidden="true">→</span></span
+              >
+              <span class="source-link"
+                >Lien vers la source à venir
+                <span aria-hidden="true">↗</span></span
+              >
+            </div>
+          </article>
+        </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <span>AI Daily</span>
+      <span>Les articles appartiennent à leurs sources originales.</span>
+    </footer>
   </body>
 </html>
