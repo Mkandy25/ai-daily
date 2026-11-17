@@ -140,6 +140,97 @@ a:focus-visible {
   margin: 0 auto;
 }
 
+/* Conteneur et navigation de la page dédiée à un article. */
+.detail-shell {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 34px 0 76px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.detail-article {
+  padding-top: 42px;
+}
+
+.detail-meta {
+  margin-bottom: 18px;
+}
+
+.detail-title {
+  max-width: 740px;
+  margin: 0;
+  font-size: clamp(2.1rem, 5.8vw, 3.6rem);
+  letter-spacing: -0.065em;
+  line-height: 1.04;
+}
+
+.detail-summary {
+  margin: 24px 0 34px;
+  padding: 20px 22px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: var(--accent-soft);
+  color: #334841;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.detail-section {
+  max-width: 650px;
+  margin: 0 0 34px;
+}
+
+.detail-section h2,
+.source-panel h2 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  letter-spacing: -0.035em;
+}
+
+.detail-section p,
+.source-panel p:not(.section-kicker) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.source-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.source-panel .section-kicker {
+  margin-bottom: 8px;
+}
+
+.source-placeholder {
+  flex: 0 0 auto;
+  color: #8a9490;
+}
+
+.detail-notice {
+  margin-top: 14px;
+}
+
 /* En-tête éditorial qui présente le sujet avant le fil d’articles. */
 .intro {
   padding: 78px 0 62px;
@@ -406,6 +497,28 @@ h3 {
 
   .page-shell {
     width: min(100% - 32px, 520px);
+  }
+
+  .detail-shell {
+    width: min(100% - 32px, 520px);
+    padding: 26px 0 56px;
+  }
+
+  .detail-article {
+    padding-top: 32px;
+  }
+
+  .detail-summary {
+    margin: 20px 0 28px;
+    padding: 17px;
+    font-size: 0.94rem;
+  }
+
+  .source-panel {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px;
   }
 
   .intro {
