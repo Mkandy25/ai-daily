@@ -13,14 +13,16 @@ The initial version of AI Daily is focused on helping users discover and underst
 The initial product should include:
 
 - A feed of AI-related news.
+- Basic collection from a limited selection of sources, starting with their RSS feeds.
 - News organized into relevant categories.
 - A dedicated page for each news item.
-- A concise summary of each news item.
-- Basic contextual information to help users understand the news.
+- A concise summary and contextual information when provided by the source.
 - Access to the original source.
 - Basic search functionality.
 - A responsive and mobile-first interface.
 - Progressive Web App capabilities.
+
+Automatically generating summaries or context, as well as expanding and improving the content pipeline, is planned for a later phase.
 
 ## 3. Content Scope
 

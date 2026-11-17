@@ -68,9 +68,10 @@ Le MVP doit se concentrer sur l'expérience principale : découvrir et consulter
 - Catégories ou thématiques.
 - Recherche basique.
 - Interface responsive.
-- Fonctionnalités PWA de base.
+- Fonctionnalités PWA de base, avec installation lorsque la plateforme le permet.
 - Attribution des sources.
-- Organisation basique du contenu.
+- Sélection de premières sources fiables et collecte basique de leurs flux RSS.
+- Organisation basique des contenus, avec résumé et contexte lorsqu'ils sont fournis par la source.
 
 ### Résultat attendu
 
@@ -86,13 +87,13 @@ Automatiser et améliorer le processus de collecte, de traitement et de présent
 
 ### Travaux prévus
 
-- Identifier des sources d'information fiables.
-- Mettre en place des mécanismes de collecte de contenu.
+- Étendre les sources prises en charge au-delà de la sélection RSS initiale.
+- Fiabiliser et automatiser davantage les mécanismes de collecte.
 - Normaliser les contenus collectés.
 - Détecter et supprimer les contenus dupliqués.
-- Catégoriser les contenus.
+- Améliorer la catégorisation automatique des contenus.
 - Extraire les métadonnées pertinentes.
-- Générer des résumés lorsque cela est pertinent.
+- Générer des résumés et du contexte lorsque cela est pertinent et que les sources ne les fournissent pas.
 - Introduire le traitement des contenus assisté par l'IA.
 - Mettre en place des mécanismes de contrôle de la qualité des contenus.
 - Surveiller la fiabilité du pipeline de contenu.
@@ -135,7 +136,7 @@ Rendre AI Daily adapté à une utilisation quotidienne sur différents appareils
 ### Travaux prévus
 
 - Améliorer les fonctionnalités Progressive Web App.
-- Ajouter la possibilité d'installer l'application.
+- Améliorer l'expérience d'installation de l'application.
 - Améliorer les fonctionnalités hors ligne lorsque cela est pertinent.
 - Implémenter les notifications push.
 - Permettre aux utilisateurs de configurer leurs préférences de notification.
@@ -209,9 +210,9 @@ La roadmap peut être résumée à travers les jalons suivants :
 | -------------------- | ------------------------------------------------------------------ | -------- |
 | Fondations du projet | Vision, objectifs, périmètre, documentation et structure initiale  | En cours |
 | MVP                  | Première version utilisable d'AI Daily                             | Prévu    |
-| Pipeline de contenu  | Collecte et traitement automatisés des informations sur l'IA       | Prévu    |
+| Pipeline de contenu  | Extension et amélioration de la collecte et du traitement des informations sur l'IA | Prévu    |
 | Personnalisation     | Comptes, préférences et contenus sauvegardés                       | Prévu    |
-| Évolution PWA        | Installation, notifications et amélioration de l'expérience mobile | Prévu    |
+| Évolution PWA        | Fonctionnalités hors ligne, notifications et amélioration de l'expérience mobile | Prévu    |
 | Production           | Déploiement, monitoring, sécurité et optimisation                  | Prévu    |
 | Open source          | Workflows pour les contributeurs et écosystème public du projet    | Prévu    |
 | Évolution continue   | Améliorations à long terme et fonctionnalités avancées             | Prévu    |

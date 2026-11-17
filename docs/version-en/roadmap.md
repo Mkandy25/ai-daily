@@ -67,9 +67,10 @@ The MVP should focus on the core experience: discovering and consuming relevant 
 - Categories or topics.
 - Basic search.
 - Responsive interface.
-- Basic PWA capabilities.
+- Basic PWA capabilities, including installation where supported.
 - Source attribution.
-- Basic content organization.
+- Selection of the first reliable sources and basic collection from their RSS feeds.
+- Basic content organization, with summaries and context when provided by the source.
 
 ### Expected outcome
 
@@ -85,13 +86,13 @@ Automate and improve the process of collecting, processing, and presenting AI-re
 
 ### Planned work
 
-- Identify reliable information sources.
-- Implement content collection mechanisms.
+- Expand supported sources beyond the initial RSS selection.
+- Make collection mechanisms more reliable and automated.
 - Normalize collected content.
 - Detect and remove duplicate content.
-- Categorize content.
+- Improve automatic content categorization.
 - Extract relevant metadata.
-- Generate summaries where appropriate.
+- Generate summaries and context where appropriate and not already provided by sources.
 - Introduce AI-assisted content processing.
 - Establish mechanisms for content quality control.
 - Monitor the reliability of the content pipeline.
@@ -134,7 +135,7 @@ Make AI Daily suitable for regular daily use across devices.
 ### Planned work
 
 - Improve Progressive Web App capabilities.
-- Add installation support.
+- Improve the application installation experience.
 - Improve offline capabilities where appropriate.
 - Implement push notifications.
 - Allow users to configure notification preferences.
@@ -208,9 +209,9 @@ The roadmap can be summarized through the following milestones:
 | -------------------- | ----------------------------------------------------------- | ----------- |
 | Project Foundation   | Vision, goals, scope, documentation, and initial structure  | In Progress |
 | MVP                  | First usable version of AI Daily                            | Planned     |
-| Content Pipeline     | Automated collection and processing of AI information       | Planned     |
+| Content Pipeline     | Expanded and improved collection and processing of AI information | Planned     |
 | Personalization      | Accounts, preferences, and saved content                    | Planned     |
-| PWA Evolution        | Installation, notifications, and improved mobile experience | Planned     |
+| PWA Evolution        | Offline capabilities, notifications, and improved mobile experience | Planned     |
 | Production           | Deployment, monitoring, security, and optimization          | Planned     |
 | Open Source          | Contributor workflows and public project ecosystem          | Planned     |
 | Continuous Evolution | Long-term improvements and advanced features                | Planned     |

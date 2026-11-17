@@ -211,6 +211,8 @@ flowchart LR
 
 Ce flux pourra évoluer au fur et à mesure que le pipeline de contenu deviendra plus sophistiqué.
 
+Ce diagramme représente le flux cible. Pour le MVP, la collecte reste limitée aux sources RSS sélectionnées et à l'enregistrement des métadonnées et du lien original. La déduplication avancée, la catégorisation automatique et le traitement par IA sont prévus dans la phase 3 de la feuille de route.
+
 ---
 
 ## 6. Flux d'une requête utilisateur

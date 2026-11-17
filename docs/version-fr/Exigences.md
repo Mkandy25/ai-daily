@@ -150,19 +150,19 @@ La personnalisation doit être introduite progressivement et ne doit pas compliq
 
 ### 4.7 Collecte des contenus
 
-Le système doit prendre en charge la collecte d'informations liées à l'IA provenant de sources externes.
+Le MVP doit collecter des contenus liés à l'IA depuis une sélection limitée de sources prises en charge, en commençant par les flux RSS. Il doit conserver les métadonnées principales et le lien vers la source originale.
 
-Le pipeline de contenu doit progressivement pouvoir :
+Dans une phase ultérieure, le pipeline pourra :
 
 - Collecter des informations provenant de sources prises en charge.
 - Traiter les contenus collectés.
 - Extraire les métadonnées.
 - Détecter les doublons.
-- Catégoriser les contenus.
+- Automatiser et améliorer la catégorisation des contenus.
 - Préparer les contenus pour leur publication.
 - Conserver la trace de la source originale.
 
-Les mécanismes précis de collecte seront définis dans l'architecture technique.
+Les mécanismes détaillés et les sources supplémentaires seront introduits progressivement, conformément à la feuille de route.
 
 ---
 
@@ -366,7 +366,8 @@ Le MVP doit se concentrer sur l'ensemble minimal de fonctionnalités nécessaire
 - Recherche basique.
 - Attribution des sources.
 - Fonctionnalités PWA de base.
-- Collecte et organisation basiques des contenus.
+- Collecte basique depuis une sélection limitée de flux RSS et organisation des contenus.
+- Résumé et contexte lorsqu'ils sont fournis par la source.
 
 ### Non requis pour le MVP
 

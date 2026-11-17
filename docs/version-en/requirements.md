@@ -150,19 +150,19 @@ Personalization should be introduced progressively and should not unnecessarily 
 
 ### 4.7 Content Collection
 
-The system should support the collection of AI-related information from external sources.
+The MVP must collect AI-related content from a limited selection of supported sources, starting with RSS feeds. It must retain the main metadata and a link to the original source.
 
-The content pipeline should eventually be capable of:
+In a later phase, the content pipeline may:
 
-- Collecting information from supported sources.
-- Processing collected content.
-- Extracting metadata.
-- Detecting duplicates.
-- Categorizing content.
-- Preparing content for publication.
-- Tracking the original source.
+- Collect information from supported sources.
+- Process collected content.
+- Extract metadata.
+- Detect duplicates.
+- Automate and improve content categorization.
+- Prepare content for publication.
+- Track the original source.
 
-The exact collection mechanisms will be defined in the technical architecture.
+Detailed collection mechanisms and additional source types will be introduced progressively, in line with the roadmap.
 
 ---
 
@@ -366,7 +366,8 @@ The MVP should focus on the smallest set of capabilities required to validate th
 - Basic search.
 - Source attribution.
 - Basic PWA capabilities.
-- Basic content ingestion and organization.
+- Basic collection from a limited selection of RSS feeds and content organization.
+- Summaries and context when provided by the source.
 
 ### Not required for MVP
 
@@ -462,7 +463,7 @@ flowchart TD
     Roadmap --> Requirements["Requirements"]
     Requirements --> Architecture["Architecture"]
     Architecture --> Implementation["Implementation"]
-````
+```
 
 The requirements defined here should guide the architecture and implementation while remaining independent from specific technologies whenever possible.
 
@@ -473,3 +474,5 @@ The requirements defined here should guide the architecture and implementation w
 The requirements document represents the current understanding of what AI Daily should provide.
 
 It should be reviewed and updated as the project moves from planning to implementation and as new information becomes available.
+
+````

@@ -13,14 +13,16 @@ La version initiale d'AI Daily a pour objectif d'aider les utilisateurs à déco
 Le produit initial doit inclure :
 
 - Un flux d'actualités liées à l'IA.
+- Une collecte basique depuis une sélection limitée de sources, en commençant par leurs flux RSS.
 - Des actualités organisées par catégories pertinentes.
 - Une page dédiée à chaque actualité.
-- Un résumé concis de chaque actualité.
-- Des informations contextuelles permettant de mieux comprendre l'actualité.
+- Un résumé concis et des informations contextuelles lorsqu'ils sont fournis par la source.
 - Un accès à la source originale.
 - Une fonctionnalité de recherche basique.
 - Une interface responsive et pensée pour le mobile.
 - Les fonctionnalités principales d'une Progressive Web App.
+
+La génération automatique de résumés ou de contexte, ainsi que l'élargissement et l'amélioration du pipeline de collecte, sont prévus dans une phase ultérieure.
 
 ## 3. Périmètre du contenu
 

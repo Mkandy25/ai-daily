@@ -211,6 +211,8 @@ flowchart LR
 
 This flow may evolve as the content pipeline becomes more sophisticated.
 
+This diagram shows the target flow. For the MVP, collection is limited to selected RSS sources and storing their metadata and original links. Advanced deduplication, automatic categorization, and AI processing are planned for Phase 3 of the roadmap.
+
 ---
 
 ## 6. User Request Flow
