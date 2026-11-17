@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Page de démonstration d’une actualité AI Daily."
+    />
+    <title>Exemple d’actualité — AI Daily</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- L’en-tête garde la même identité visuelle que le fil d’actualités. -->
+    <header class="site-header">
+      <a class="brand" href="index.html#top" aria-label="AI Daily, accueil">
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <span>AI Daily</span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a class="nav-link" href="index.html#articles">Actualités</a>
+      </nav>
+    </header>
+
+    <main class="detail-shell">
+      <a class="back-link" href="index.html#articles">
+        <span aria-hidden="true">←</span> Retour aux actualités
+      </a>
+
+      <!-- Les métadonnées et le contenu seront alimentés par l’article sélectionné. -->
+      <article class="detail-article">
+        <div class="article-meta detail-meta">
+          <span class="article-topic">Recherche</span>
+          <span class="meta-separator" aria-hidden="true">·</span>
+          <span>Source de démonstration</span>
+          <span class="meta-separator" aria-hidden="true">·</span>
+          <time datetime="2026-11-17">17 nov. 2026</time>
+        </div>
+
+        <h1 class="detail-title">
+          Exemple : une nouvelle recherche fait avancer l’intelligence artificielle
+        </h1>
+
+        <p class="detail-summary">
+          Exemple de résumé. Dans la version connectée aux sources, cette zone
+          affichera le résumé fourni par l’éditeur lorsqu’il est disponible.
+        </p>
+
+        <section class="detail-section" aria-labelledby="context-title">
+          <h2 id="context-title">À propos de cette actualité</h2>
+          <p>
+            Cette page montre où apparaîtront les informations utiles pour
+            comprendre l’article. Le contenu réel et le lien vers sa source
+            seront ajoutés lorsque les données RSS seront connectées.
+          </p>
+        </section>
+
+        <aside class="source-panel" aria-labelledby="source-title">
+          <div>
+            <p class="section-kicker">Pour aller plus loin</p>
+            <h2 id="source-title">Article original</h2>
+            <p>Le lien vers la publication originale apparaîtra ici.</p>
+          </div>
+          <span class="source-link source-placeholder">
+            Lien source à venir <span aria-hidden="true">↗</span>
+          </span>
+        </aside>
+
+        <p class="demo-notice detail-notice">
+          Page de démonstration : le titre, le résumé et la source ne correspondent
+          pas à un article réel.
+        </p>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>AI Daily</span>
+      <span>Les articles appartiennent à leurs sources originales.</span>
+    </footer>
+  </body>
+</html>
