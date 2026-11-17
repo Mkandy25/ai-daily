@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- En-tête : identité du site, navigation et recherche. -->
     <header class="site-header">
       <a class="brand" href="#top" aria-label="AI Daily, accueil">
         <span class="brand-mark" aria-hidden="true">AI</span>
@@ -33,6 +34,7 @@
     </header>
 
     <main id="top" class="page-shell">
+      <!-- Présente le sujet du site avant la liste d’articles. -->
       <section class="intro" aria-labelledby="page-title">
         <p class="eyebrow">
           <span class="status-dot"></span> Votre veille IA, en un fil
@@ -52,14 +54,49 @@
             <p class="section-kicker">Le fil</p>
             <h2 id="feed-title">Actualités récentes</h2>
           </div>
-          <span class="article-count" id="article-count" aria-live="polite">3 actualités</span>
+          <span class="article-count" id="article-count" aria-live="polite"
+            >3 actualités</span
+          >
         </div>
 
-        <div class="topic-list" role="group" aria-label="Filtrer les actualités par thème">
-          <button class="topic topic-selected" type="button" data-topic="all" aria-pressed="true">Tout</button>
-          <button class="topic" type="button" data-topic="research" aria-pressed="false">Recherche</button>
-          <button class="topic" type="button" data-topic="tools" aria-pressed="false">Outils</button>
-          <button class="topic" type="button" data-topic="business" aria-pressed="false">Entreprises</button>
+        <!-- Les valeurs data-topic relient chaque filtre aux cartes correspondantes. -->
+        <div
+          class="topic-list"
+          role="group"
+          aria-label="Filtrer les actualités par thème"
+        >
+          <button
+            class="topic topic-selected"
+            type="button"
+            data-topic="all"
+            aria-pressed="true"
+          >
+            Tout
+          </button>
+          <button
+            class="topic"
+            type="button"
+            data-topic="research"
+            aria-pressed="false"
+          >
+            Recherche
+          </button>
+          <button
+            class="topic"
+            type="button"
+            data-topic="tools"
+            aria-pressed="false"
+          >
+            Outils
+          </button>
+          <button
+            class="topic"
+            type="button"
+            data-topic="business"
+            aria-pressed="false"
+          >
+            Entreprises
+          </button>
         </div>
 
         <p class="demo-notice">
@@ -67,6 +104,7 @@
           RSS sera ajoutée dans une prochaine étape.
         </p>
 
+        <!-- Articles de démonstration, qui seront remplacés par les données du backend. -->
         <div class="article-list">
           <article class="article-card" data-topic="research">
             <div class="article-meta">
@@ -152,6 +190,7 @@
       </section>
     </main>
 
+    <!-- Rappel de l’attribution des contenus à leurs sources originales. -->
     <footer class="site-footer">
       <span>AI Daily</span>
       <span>Les articles appartiennent à leurs sources originales.</span>
