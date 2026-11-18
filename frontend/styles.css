@@ -377,6 +377,17 @@ h2 {
   gap: 12px;
 }
 
+/* Le bouton charge les 20 actualités suivantes sans quitter la page. */
+.load-more {
+  display: block;
+  min-width: 180px;
+  margin: 22px auto 0;
+}
+
+.load-more[hidden] {
+  display: none;
+}
+
 .article-card {
   padding: 23px 25px 19px;
   border: 1px solid var(--line);

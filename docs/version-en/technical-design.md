@@ -168,6 +168,8 @@ Example resources include:
 
 These endpoints are examples of the intended API structure and may change during implementation.
 
+In the first implementation, `GET /articles` accepts `offset` and `limit` to page through the feed. The API returns 20 articles by default and limits a request to 50 articles.
+
 ### API principle
 
 The API should remain independent from the frontend implementation.
@@ -284,6 +286,8 @@ Possible sources include:
 - RSS feeds selected for the MVP.
 - APIs and other structured sources in later phases, depending on availability and project needs.
 - Websites only when collection can be supported appropriately.
+
+The first RSS source selected for the MVP is OpenAI News: `https://openai.com/news/rss.xml`. The backend converts feed entries into AI Daily's common article format. Additional sources will be added progressively.
 
 ### Normalization
 

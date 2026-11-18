@@ -168,6 +168,8 @@ Exemples de ressources :
 
 Ces endpoints représentent une direction initiale et pourront évoluer pendant l’implémentation.
 
+Dans la première version, `GET /articles` accepte `offset` et `limit` pour parcourir le flux par pages. Par défaut, l’API renvoie 20 articles et limite une demande à 50 articles.
+
 ### Principe de l’API
 
 L’API doit rester indépendante de l’implémentation du frontend.
@@ -284,6 +286,8 @@ Les sources peuvent notamment inclure :
 - Flux RSS sélectionnés pour le MVP.
 - APIs et autres sources structurées dans les phases ultérieures, selon leur disponibilité et les besoins du projet.
 - Sites web uniquement lorsque leur collecte est prise en charge de manière appropriée.
+
+La première source RSS retenue pour le MVP est OpenAI News : `https://openai.com/news/rss.xml`. Le backend convertit les entrées du flux vers le format commun d’article d’AI Daily. D’autres sources seront ajoutées progressivement.
 
 ### Normalisation
 
