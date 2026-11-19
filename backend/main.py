@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from html import unescape
 from html.parser import HTMLParser
+from pathlib import Path
 from typing import List, Optional
 from urllib.error import URLError
 from urllib.request import Request, urlopen
@@ -11,11 +12,13 @@ import xml.etree.ElementTree as ET
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 
 OPENAI_RSS_URL = "https://openai.com/news/rss.xml"
 OPENAI_SOURCE_NAME = "OpenAI News"
+FRONTEND_DIRECTORY = Path(__file__).resolve().parent.parent / "frontend"
 
 app = FastAPI(title="AI Daily API", version="0.1.0")
 
@@ -155,3 +158,12 @@ def get_articles(
             status_code=502,
             detail="Le flux reçu n’est pas un flux RSS valide.",
         ) from error
+
+
+# Sert les pages et fichiers du frontend sur le même domaine que l’API en production.
+# Cette route doit rester après les routes API pour que /articles garde la priorité.
+app.mount(
+    "/",
+    StaticFiles(directory=FRONTEND_DIRECTORY, html=True),
+    name="frontend",
+)

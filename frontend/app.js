@@ -8,8 +8,13 @@ const emptyState = document.querySelector("#empty-state");
 const feedStatus = document.querySelector("#feed-status");
 const loadMoreButton = document.querySelector("#load-more");
 
-// L’API tourne sur le port 8000 pendant le développement local.
-const API_URL = "http://127.0.0.1:8000/articles";
+// En local, le frontend et l’API utilisent deux serveurs ; sur Vercel, ils partagent un domaine.
+const isLocalDevelopment = ["localhost", "127.0.0.1"].includes(
+  window.location.hostname,
+);
+const API_URL = isLocalDevelopment
+  ? "http://127.0.0.1:8000/articles"
+  : "/articles";
 const PAGE_SIZE = 20;
 
 let activeTopic = "all";
