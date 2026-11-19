@@ -1,0 +1,9 @@
+[project]
+name = "ai-daily"
+version = "0.1.0"
+description = "An AI news feed powered by RSS sources"
+requires-python = ">=3.12"
+dependencies = ["fastapi[standard]"]
+
+[tool.vercel]
+entrypoint = "backend.main:app"
