@@ -5,77 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Page de démonstration d’une actualité AI Daily."
+      data-i18n-content="page.articleDescription"
+      content="Résumé et source d’une actualité sur l’intelligence artificielle."
     />
-    <title>Exemple d’actualité — AI Daily</title>
+    <title data-i18n="page.articleTitle">Actualité — AI Daily</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="i18n.js" defer></script>
+    <script src="article.js" defer></script>
   </head>
   <body>
     <!-- L’en-tête garde la même identité visuelle que le fil d’actualités. -->
     <header class="site-header">
-      <a class="brand" href="index.html#top" aria-label="AI Daily, accueil">
+      <a class="brand" href="index.html#top" data-i18n-aria-label="brand.label">
         <span class="brand-mark" aria-hidden="true">AI</span>
         <span>AI Daily</span>
       </a>
-      <nav class="main-nav" aria-label="Navigation principale">
-        <a class="nav-link" href="index.html#articles">Actualités</a>
+      <nav class="main-nav" data-i18n-aria-label="nav.label">
+        <a class="nav-link" href="index.html#articles" data-i18n="nav.news">Actualités</a>
       </nav>
+      <button class="language-toggle" id="language-toggle" type="button">English</button>
     </header>
 
     <main class="detail-shell">
       <a class="back-link" href="index.html#articles">
-        <span aria-hidden="true">←</span> Retour aux actualités
+        <span aria-hidden="true">←</span> <span data-i18n="detail.back">Retour aux actualités</span>
       </a>
 
-      <!-- Les métadonnées et le contenu seront alimentés par l’article sélectionné. -->
-      <article class="detail-article">
-        <div class="article-meta detail-meta">
-          <span class="article-topic">Recherche</span>
-          <span class="meta-separator" aria-hidden="true">·</span>
-          <span>Source de démonstration</span>
-          <span class="meta-separator" aria-hidden="true">·</span>
-          <time datetime="2026-11-17">17 nov. 2026</time>
-        </div>
+      <p class="demo-notice detail-notice" id="detail-status" role="status">
+        <span data-i18n="detail.loading">Chargement de l’actualité…</span>
+      </p>
 
-        <h1 class="detail-title">
-          Exemple : une nouvelle recherche fait avancer l’intelligence artificielle
-        </h1>
-
-        <p class="detail-summary">
-          Exemple de résumé. Dans la version connectée aux sources, cette zone
-          affichera le résumé fourni par l’éditeur lorsqu’il est disponible.
-        </p>
+      <!-- Le script remplit cette page avec l’article choisi dans le fil. -->
+      <article class="detail-article" id="detail-article" hidden>
+        <div class="article-meta detail-meta" id="detail-meta"></div>
+        <h1 class="detail-title" id="detail-title"></h1>
 
         <section class="detail-section" aria-labelledby="context-title">
-          <h2 id="context-title">À propos de cette actualité</h2>
-          <p>
-            Cette page montre où apparaîtront les informations utiles pour
-            comprendre l’article. Le contenu réel et le lien vers sa source
-            seront ajoutés lorsque les données RSS seront connectées.
-          </p>
+          <h2 id="context-title" data-i18n="detail.sourceSummaryTitle">Extrait fourni par la source</h2>
+          <p class="source-excerpt" id="source-excerpt"></p>
+          <p id="detail-context"></p>
+        </section>
+
+        <section class="detail-section explanation-section" aria-labelledby="explanation-title">
+          <h2 id="explanation-title" data-i18n="detail.explanationTitle">L’actualité expliquée simplement</h2>
+          <p data-i18n="detail.explanationIntro">Une explication générée à partir du texte fourni par la source.</p>
+          <button class="topic generate-summary" id="generate-summary" type="button" data-i18n="detail.generate">
+            Générer l’explication en français et en anglais
+          </button>
+          <p class="detail-summary" id="detail-summary" hidden></p>
+          <p class="demo-notice" id="summary-status" role="status" hidden></p>
         </section>
 
         <aside class="source-panel" aria-labelledby="source-title">
           <div>
-            <p class="section-kicker">Pour aller plus loin</p>
-            <h2 id="source-title">Article original</h2>
-            <p>Le lien vers la publication originale apparaîtra ici.</p>
+            <p class="section-kicker" data-i18n="detail.sourceKicker">Pour aller plus loin</p>
+            <h2 id="source-title" data-i18n="detail.originalTitle">Article original</h2>
+            <p data-i18n="detail.originalCopy">Consulte la publication complète sur le site de l’éditeur.</p>
           </div>
-          <span class="source-link source-placeholder">
-            Lien source à venir <span aria-hidden="true">↗</span>
-          </span>
+          <a
+            class="source-link"
+            id="detail-source-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span data-i18n="detail.originalLink">Lire l’article original</span> <span aria-hidden="true">↗</span>
+          </a>
         </aside>
-
-        <p class="demo-notice detail-notice">
-          Page de démonstration : le titre, le résumé et la source ne correspondent
-          pas à un article réel.
-        </p>
       </article>
     </main>
 
     <footer class="site-footer">
       <span>AI Daily</span>
-      <span>Les articles appartiennent à leurs sources originales.</span>
+      <span data-i18n="footer.attribution">Les articles appartiennent à leurs sources originales.</span>
     </footer>
   </body>
 </html>

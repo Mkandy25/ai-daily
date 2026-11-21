@@ -7,6 +7,7 @@ const articleCount = document.querySelector("#article-count");
 const emptyState = document.querySelector("#empty-state");
 const feedStatus = document.querySelector("#feed-status");
 const loadMoreButton = document.querySelector("#load-more");
+const { getLanguage, translate } = window.aiDailyI18n;
 
 // En local, le frontend et l’API utilisent deux serveurs ; sur Vercel, ils partagent un domaine.
 const isLocalDevelopment = ["localhost", "127.0.0.1"].includes(
@@ -72,8 +73,8 @@ function updateFeed() {
     }
   });
 
-  const plural = visibleCount === 1 ? "actualité" : "actualités";
-  articleCount.textContent = `${visibleCount} ${plural}`;
+  const countKey = visibleCount === 1 ? "feed.count.one" : "feed.count.many";
+  articleCount.textContent = translate(countKey, { count: visibleCount });
   emptyState.hidden = visibleCount > 0;
 }
 
@@ -87,13 +88,14 @@ function createArticleCard(article) {
   metadata.className = "article-meta";
 
   const topic = document.createElement("span");
-  const topicLabels = {
-    research: "Recherche",
-    tools: "Outils",
-    business: "Entreprises",
+  const topicKeys = {
+    research: "topic.research",
+    tools: "topic.tools",
+    business: "topic.business",
   };
   topic.className = `article-topic topic-${card.dataset.topic}`;
-  topic.textContent = topicLabels[card.dataset.topic];
+  topic.dataset.topicLabel = topicKeys[card.dataset.topic];
+  topic.textContent = translate(topic.dataset.topicLabel);
 
   const source = document.createElement("span");
   source.textContent = article.source;
@@ -104,7 +106,7 @@ function createArticleCard(article) {
     if (!Number.isNaN(date.getTime())) {
       const time = document.createElement("time");
       time.dateTime = date.toISOString();
-      time.textContent = new Intl.DateTimeFormat("fr-FR", {
+      time.textContent = new Intl.DateTimeFormat(getLanguage() === "fr" ? "fr-FR" : "en-US", {
         dateStyle: "medium",
       }).format(date);
       metadata.append(createSeparator(), time);
@@ -117,17 +119,25 @@ function createArticleCard(article) {
   const summary = document.createElement("p");
   summary.className = "article-summary";
   summary.textContent =
-    article.summary || "Aucun résumé n’est disponible pour cet article.";
+    article.summary || translate("feed.noSummary");
 
   const actions = document.createElement("div");
   actions.className = "article-actions";
+
+  const detailLink = document.createElement("a");
+  detailLink.className = "text-link";
+  detailLink.href = `article.html?url=${encodeURIComponent(article.url)}`;
+  detailLink.dataset.i18n = "feed.detailLink";
+  detailLink.textContent = translate("feed.detailLink");
+
   const originalLink = document.createElement("a");
-  originalLink.className = "text-link";
+  originalLink.className = "source-link";
   originalLink.href = article.url;
   originalLink.target = "_blank";
   originalLink.rel = "noopener noreferrer";
-  originalLink.textContent = "Lire l’article original →";
-  actions.append(originalLink);
+  originalLink.dataset.i18n = "feed.sourceLink";
+  originalLink.textContent = translate("feed.sourceLink");
+  actions.append(detailLink, originalLink);
 
   card.append(metadata, title, summary, actions);
   return card;
@@ -150,7 +160,7 @@ async function loadArticles() {
 
   isLoadingArticles = true;
   loadMoreButton.disabled = true;
-  loadMoreButton.textContent = "Chargement…";
+  loadMoreButton.textContent = translate("feed.loading");
 
   try {
     // Une entrée supplémentaire permet de savoir s’il reste une autre page.
@@ -167,24 +177,23 @@ async function loadArticles() {
     nextOffset += pageArticles.length;
     hasMoreArticles = articles.length > PAGE_SIZE;
     loadMoreButton.hidden = !hasMoreArticles;
-    feedStatus.textContent = `${articleCards.length} actualité(s) chargée(s) depuis OpenAI News.`;
+    feedStatus.textContent = translate("feed.loaded", { count: articleCards.length });
     updateFeed();
   } catch (error) {
     if (articleCards.length === 0) {
-      feedStatus.textContent =
-        "Impossible de charger les actualités. Vérifie que le backend FastAPI est lancé sur http://127.0.0.1:8000.";
-      articleCount.textContent = "Indisponible";
-      emptyState.textContent = "Le fil n’a pas pu être chargé.";
+      feedStatus.textContent = translate("feed.loadError");
+      articleCount.textContent = translate("feed.loading");
+      emptyState.textContent = translate("feed.empty");
       emptyState.hidden = false;
     } else {
-      feedStatus.textContent = "Impossible de charger la suite. Tu peux réessayer.";
+      feedStatus.textContent = translate("feed.moreError");
       loadMoreButton.hidden = false;
     }
     console.error("Erreur lors du chargement des actualités :", error);
   } finally {
     isLoadingArticles = false;
     loadMoreButton.disabled = false;
-    loadMoreButton.textContent = "Charger la suite";
+    loadMoreButton.textContent = translate("feed.loadMore");
   }
 }
 
@@ -223,6 +232,22 @@ loadMoreButton.addEventListener("click", () => {
 
   updateFeed();
   loadArticles();
+});
+
+// Actualise les textes créés par JavaScript lorsque la personne change de langue.
+window.addEventListener("languagechange", () => {
+  updateFeed();
+  articleList.querySelectorAll("[data-topic-label]").forEach((label) => {
+    label.textContent = translate(label.dataset.topicLabel);
+  });
+  articleList.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = translate(element.dataset.i18n);
+  });
+  emptyState.textContent = translate("feed.empty");
+  loadMoreButton.textContent = translate("feed.loadMore");
+  if (articleCards.length > 0) {
+    feedStatus.textContent = translate("feed.loaded", { count: articleCards.length });
+  }
 });
 
 // Le chargement démarre dès que le script du fil est prêt.

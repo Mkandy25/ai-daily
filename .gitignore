@@ -2,6 +2,9 @@
 **/.venv/
 **/venv/
 
+# Clés locales des services externes : ne jamais les envoyer sur GitHub.
+backend/.env
+
 # Python bytecode cache
 **/__pycache__/
 *.py[cod]

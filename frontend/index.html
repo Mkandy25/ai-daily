@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
+      data-i18n-content="page.feedDescription"
       content="Un fil clair pour découvrir les actualités de l’intelligence artificielle."
     />
-    <title>AI Daily — Actualités sur l’IA</title>
+    <title data-i18n="page.feedTitle">AI Daily — Actualités sur l’IA</title>
+    <link rel="icon" type="image/png" href="/public/assets/logos/ai.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <!-- En-tête : identité du site, navigation et recherche. -->
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="AI Daily, accueil">
+      <a class="brand" href="#top" data-i18n-aria-label="brand.label">
         <span class="brand-mark" aria-hidden="true">AI</span>
         <span>AI Daily</span>
       </a>
-      <nav class="main-nav" aria-label="Navigation principale">
-        <a class="nav-link nav-link-active" href="#articles">Actualités</a>
+      <nav class="main-nav" data-i18n-aria-label="nav.label">
+        <a class="nav-link nav-link-active" href="#articles" data-i18n="nav.news">Actualités</a>
       </nav>
+      <button class="language-toggle" id="language-toggle" type="button">English</button>
       <form class="search-box" id="search-form" role="search">
         <span class="search-icon" aria-hidden="true">⌕</span>
-        <label class="visually-hidden" for="news-search"
-          >Rechercher une actualité</label
-        >
+        <label class="visually-hidden" for="news-search" data-i18n="search.label">Rechercher une actualité</label>
         <input
           id="news-search"
           type="search"
+          data-i18n-placeholder="search.placeholder"
           placeholder="Rechercher une actualité"
         />
       </form>
@@ -38,25 +40,24 @@
       <!-- Présente le sujet du site avant la liste d’articles. -->
       <section class="intro" aria-labelledby="page-title">
         <p class="eyebrow">
-          <span class="status-dot"></span> Votre veille IA, en un fil
+          <span class="status-dot"></span><span data-i18n="intro.eyebrow">Votre veille IA, en un fil</span>
         </p>
         <h1 id="page-title">
-          L’actualité de l’IA,<br /><span>en clair.</span>
+          <span data-i18n="intro.title">L’actualité de l’IA,</span><br /><span data-i18n="intro.title.highlight">en clair.</span>
         </h1>
-        <p class="intro-copy">
-          Les nouveautés et les idées à suivre dans le domaine de l’intelligence
-          artificielle.
+        <p class="intro-copy" data-i18n="intro.copy">
+          Les nouveautés et les idées à suivre dans le domaine de l’intelligence artificielle.
         </p>
       </section>
 
       <section class="feed-section" id="articles" aria-labelledby="feed-title">
         <div class="feed-heading">
           <div>
-            <p class="section-kicker">Le fil</p>
-            <h2 id="feed-title">Actualités récentes</h2>
+            <p class="section-kicker" data-i18n="feed.kicker">Le fil</p>
+            <h2 id="feed-title" data-i18n="feed.title">Actualités récentes</h2>
           </div>
           <span class="article-count" id="article-count" aria-live="polite"
-            >Chargement…</span
+            data-i18n="feed.loading">Chargement…</span
           >
         </div>
 
@@ -64,7 +65,7 @@
         <div
           class="topic-list"
           role="group"
-          aria-label="Filtrer les actualités par thème"
+          data-i18n-aria-label="feed.filters"
         >
           <button
             class="topic topic-selected"
@@ -72,7 +73,7 @@
             data-topic="all"
             aria-pressed="true"
           >
-            Tout
+            <span data-i18n="topic.all">Tout</span>
           </button>
           <button
             class="topic"
@@ -80,7 +81,7 @@
             data-topic="research"
             aria-pressed="false"
           >
-            Recherche
+            <span data-i18n="topic.research">Recherche</span>
           </button>
           <button
             class="topic"
@@ -88,7 +89,7 @@
             data-topic="tools"
             aria-pressed="false"
           >
-            Outils
+            <span data-i18n="topic.tools">Outils</span>
           </button>
           <button
             class="topic"
@@ -96,23 +97,23 @@
             data-topic="business"
             aria-pressed="false"
           >
-            Entreprises
+            <span data-i18n="topic.business">Entreprises</span>
           </button>
         </div>
 
         <p class="demo-notice" id="feed-status" role="status">
-          Chargement des actualités depuis OpenAI News…
+          <span data-i18n="feed.loadingNotice">Chargement des actualités depuis OpenAI News…</span>
         </p>
 
         <!-- Le script ajoute ici les articles reçus du backend. -->
         <div class="article-list" id="article-list"></div>
 
         <button class="topic load-more" id="load-more" type="button" hidden>
-          Charger la suite
+          <span data-i18n="feed.loadMore">Charger la suite</span>
         </button>
 
         <p class="empty-state" id="empty-state" role="status" hidden>
-          Aucune actualité ne correspond à ta recherche.
+          <span data-i18n="feed.empty">Aucune actualité ne correspond à ta recherche.</span>
         </p>
       </section>
     </main>
@@ -120,8 +121,9 @@
     <!-- Rappel de l’attribution des contenus à leurs sources originales. -->
     <footer class="site-footer">
       <span>AI Daily</span>
-      <span>Les articles appartiennent à leurs sources originales.</span>
+      <span data-i18n="footer.attribution">Les articles appartiennent à leurs sources originales.</span>
     </footer>
+    <script src="i18n.js" defer></script>
     <script src="app.js" defer></script>
   </body>
 </html>
