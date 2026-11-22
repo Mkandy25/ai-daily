@@ -1,13 +1,13 @@
 // Ces sélecteurs relient le script aux champs, boutons et zones du fil.
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#news-search");
-const topicButtons = document.querySelectorAll(".topic");
+const topicButtons = document.querySelectorAll(".topic-list .topic");
 const articleList = document.querySelector("#article-list");
 const articleCount = document.querySelector("#article-count");
 const emptyState = document.querySelector("#empty-state");
 const feedStatus = document.querySelector("#feed-status");
 const loadMoreButton = document.querySelector("#load-more");
-const { getLanguage, translate } = window.aiDailyI18n;
+const i18n = window.aiDailyI18n;
 
 // En local, le frontend et l’API utilisent deux serveurs ; sur Vercel, ils partagent un domaine.
 const isLocalDevelopment = ["localhost", "127.0.0.1"].includes(
@@ -74,7 +74,7 @@ function updateFeed() {
   });
 
   const countKey = visibleCount === 1 ? "feed.count.one" : "feed.count.many";
-  articleCount.textContent = translate(countKey, { count: visibleCount });
+  articleCount.textContent = i18n.translate(countKey, { count: visibleCount });
   emptyState.hidden = visibleCount > 0;
 }
 
@@ -95,7 +95,7 @@ function createArticleCard(article) {
   };
   topic.className = `article-topic topic-${card.dataset.topic}`;
   topic.dataset.topicLabel = topicKeys[card.dataset.topic];
-  topic.textContent = translate(topic.dataset.topicLabel);
+  topic.textContent = i18n.translate(topic.dataset.topicLabel);
 
   const source = document.createElement("span");
   source.textContent = article.source;
@@ -106,7 +106,7 @@ function createArticleCard(article) {
     if (!Number.isNaN(date.getTime())) {
       const time = document.createElement("time");
       time.dateTime = date.toISOString();
-      time.textContent = new Intl.DateTimeFormat(getLanguage() === "fr" ? "fr-FR" : "en-US", {
+      time.textContent = new Intl.DateTimeFormat(i18n.getLanguage() === "fr" ? "fr-FR" : "en-US", {
         dateStyle: "medium",
       }).format(date);
       metadata.append(createSeparator(), time);
@@ -119,7 +119,7 @@ function createArticleCard(article) {
   const summary = document.createElement("p");
   summary.className = "article-summary";
   summary.textContent =
-    article.summary || translate("feed.noSummary");
+    article.summary || i18n.translate("feed.noSummary");
 
   const actions = document.createElement("div");
   actions.className = "article-actions";
@@ -128,7 +128,7 @@ function createArticleCard(article) {
   detailLink.className = "text-link";
   detailLink.href = `article.html?url=${encodeURIComponent(article.url)}`;
   detailLink.dataset.i18n = "feed.detailLink";
-  detailLink.textContent = translate("feed.detailLink");
+  detailLink.textContent = i18n.translate("feed.detailLink");
 
   const originalLink = document.createElement("a");
   originalLink.className = "source-link";
@@ -136,7 +136,7 @@ function createArticleCard(article) {
   originalLink.target = "_blank";
   originalLink.rel = "noopener noreferrer";
   originalLink.dataset.i18n = "feed.sourceLink";
-  originalLink.textContent = translate("feed.sourceLink");
+  originalLink.textContent = i18n.translate("feed.sourceLink");
   actions.append(detailLink, originalLink);
 
   card.append(metadata, title, summary, actions);
@@ -160,14 +160,22 @@ async function loadArticles() {
 
   isLoadingArticles = true;
   loadMoreButton.disabled = true;
-  loadMoreButton.textContent = translate("feed.loading");
+  loadMoreButton.textContent = i18n.translate("feed.loading");
 
   try {
     // Une entrée supplémentaire permet de savoir s’il reste une autre page.
     const pageUrl = `${API_URL}?offset=${nextOffset}&limit=${PAGE_SIZE + 1}`;
     const response = await fetch(pageUrl);
     if (!response.ok) {
-      throw new Error(`L’API a répondu avec le statut ${response.status}.`);
+      let errorDetails = null;
+      try {
+        errorDetails = await response.json();
+      } catch {
+        // Certaines erreurs réseau renvoient du texte brut au lieu d’un JSON.
+      }
+      throw new Error(
+        errorDetails?.detail || `L’API a répondu avec le statut ${response.status}.`,
+      );
     }
 
     const articles = await response.json();
@@ -177,23 +185,26 @@ async function loadArticles() {
     nextOffset += pageArticles.length;
     hasMoreArticles = articles.length > PAGE_SIZE;
     loadMoreButton.hidden = !hasMoreArticles;
-    feedStatus.textContent = translate("feed.loaded", { count: articleCards.length });
+    feedStatus.textContent = i18n.translate("feed.loaded", { count: articleCards.length });
     updateFeed();
   } catch (error) {
     if (articleCards.length === 0) {
-      feedStatus.textContent = translate("feed.loadError");
-      articleCount.textContent = translate("feed.loading");
-      emptyState.textContent = translate("feed.empty");
+      const isConnectionError = error instanceof TypeError;
+      feedStatus.textContent = isConnectionError
+        ? i18n.translate("feed.connectionError")
+        : error.message || i18n.translate("feed.loadError");
+      articleCount.textContent = i18n.translate("feed.unavailable");
+      emptyState.textContent = i18n.translate("feed.loadError");
       emptyState.hidden = false;
     } else {
-      feedStatus.textContent = translate("feed.moreError");
+      feedStatus.textContent = i18n.translate("feed.moreError");
       loadMoreButton.hidden = false;
     }
     console.error("Erreur lors du chargement des actualités :", error);
   } finally {
     isLoadingArticles = false;
     loadMoreButton.disabled = false;
-    loadMoreButton.textContent = translate("feed.loadMore");
+    loadMoreButton.textContent = i18n.translate("feed.loadMore");
   }
 }
 
@@ -238,15 +249,15 @@ loadMoreButton.addEventListener("click", () => {
 window.addEventListener("languagechange", () => {
   updateFeed();
   articleList.querySelectorAll("[data-topic-label]").forEach((label) => {
-    label.textContent = translate(label.dataset.topicLabel);
+    label.textContent = i18n.translate(label.dataset.topicLabel);
   });
   articleList.querySelectorAll("[data-i18n]").forEach((element) => {
-    element.textContent = translate(element.dataset.i18n);
+    element.textContent = i18n.translate(element.dataset.i18n);
   });
-  emptyState.textContent = translate("feed.empty");
-  loadMoreButton.textContent = translate("feed.loadMore");
+  emptyState.textContent = i18n.translate("feed.empty");
+  loadMoreButton.textContent = i18n.translate("feed.loadMore");
   if (articleCards.length > 0) {
-    feedStatus.textContent = translate("feed.loaded", { count: articleCards.length });
+    feedStatus.textContent = i18n.translate("feed.loaded", { count: articleCards.length });
   }
 });
 
