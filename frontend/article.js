@@ -9,7 +9,7 @@ const detailContext = document.querySelector("#detail-context");
 const detailSourceLink = document.querySelector("#detail-source-link");
 const generateSummaryButton = document.querySelector("#generate-summary");
 const summaryStatus = document.querySelector("#summary-status");
-const { getLanguage, translate } = window.aiDailyI18n;
+const i18n = window.aiDailyI18n;
 
 // Le domaine local utilise FastAPI sur son port ; Vercel partage le même domaine.
 const isLocalDevelopment = ["localhost", "127.0.0.1"].includes(
@@ -34,7 +34,7 @@ function renderGeneratedSummary() {
     return;
   }
 
-  detailSummary.textContent = bilingualSummary[getLanguage()];
+  detailSummary.textContent = bilingualSummary[i18n.getLanguage()];
   detailSummary.hidden = false;
 }
 
@@ -43,10 +43,10 @@ function renderArticle(article) {
   selectedArticle = article;
   detailTitle.textContent = article.title;
   sourceExcerpt.textContent =
-    article.summary || translate("feed.noSummary");
+    article.summary || i18n.translate("feed.noSummary");
   detailContext.textContent = article.summary
-    ? translate("detail.sourceSummaryContext")
-    : translate("detail.noSourceSummary");
+    ? i18n.translate("detail.sourceSummaryContext")
+    : i18n.translate("detail.noSourceSummary");
 
   const source = document.createElement("span");
   source.textContent = article.source;
@@ -58,7 +58,7 @@ function renderArticle(article) {
       const time = document.createElement("time");
       time.dateTime = date.toISOString();
       time.textContent = new Intl.DateTimeFormat(
-        getLanguage() === "fr" ? "fr-FR" : "en-US",
+        i18n.getLanguage() === "fr" ? "fr-FR" : "en-US",
         { dateStyle: "medium" },
       ).format(date);
       detailMeta.append(createSeparator(), time);
@@ -75,7 +75,7 @@ function renderArticle(article) {
 async function loadArticle() {
   const articleUrl = new URLSearchParams(window.location.search).get("url");
   if (!articleUrl) {
-    detailStatus.textContent = translate("detail.missing");
+    detailStatus.textContent = i18n.translate("detail.missing");
     return;
   }
 
@@ -84,10 +84,10 @@ async function loadArticle() {
       `${API_BASE_URL}/article?url=${encodeURIComponent(articleUrl)}`,
     );
     if (response.status === 404) {
-      throw new Error(translate("detail.notFound"));
+      throw new Error(i18n.translate("detail.notFound"));
     }
     if (!response.ok) {
-      throw new Error(translate("detail.loadError"));
+      throw new Error(i18n.translate("detail.loadError"));
     }
 
     renderArticle(await response.json());
@@ -104,7 +104,7 @@ async function generateBilingualSummary() {
   }
 
   generateSummaryButton.disabled = true;
-  generateSummaryButton.textContent = translate("detail.generating");
+  generateSummaryButton.textContent = i18n.translate("detail.generating");
   summaryStatus.hidden = true;
 
   try {
@@ -115,7 +115,7 @@ async function generateBilingualSummary() {
       const errorKey = response.status === 503
         ? "detail.summaryUnavailable"
         : "detail.generateError";
-      throw new Error(translate(errorKey));
+      throw new Error(i18n.translate(errorKey));
     }
 
     const result = await response.json();
@@ -123,12 +123,12 @@ async function generateBilingualSummary() {
     renderGeneratedSummary();
     generateSummaryButton.hidden = true;
   } catch (error) {
-    summaryStatus.textContent = error.message || translate("detail.generateError");
+    summaryStatus.textContent = error.message || i18n.translate("detail.generateError");
     summaryStatus.hidden = false;
   } finally {
     generateSummaryButton.disabled = false;
     if (!generateSummaryButton.hidden) {
-      generateSummaryButton.textContent = translate("detail.generate");
+      generateSummaryButton.textContent = i18n.translate("detail.generate");
     }
   }
 }
@@ -141,7 +141,7 @@ window.addEventListener("languagechange", () => {
   }
   renderGeneratedSummary();
   if (!generateSummaryButton.hidden && !generateSummaryButton.disabled) {
-    generateSummaryButton.textContent = translate("detail.generate");
+    generateSummaryButton.textContent = i18n.translate("detail.generate");
   }
 });
 
